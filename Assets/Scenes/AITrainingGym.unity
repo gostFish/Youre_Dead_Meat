@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &25684873
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,8 +265,8 @@ MonoBehaviour:
   - 3
   - 4
   - 5
-  minSpawnTime: 3
-  maxSpawnTime: 6
+  minSpawnTime: 2
+  maxSpawnTime: 12
   instancePool: {fileID: 1326128244}
   defaultObject: {fileID: 7898305059274075297, guid: 51d2a38d272fb3d4688d230b358d2be5, type: 3}
 --- !u!1 &35972926
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &204948173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &310448075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1068,7 @@ GameObject:
   - component: {fileID: 310448077}
   - component: {fileID: 310448081}
   - component: {fileID: 310448082}
+  - component: {fileID: 310448083}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
@@ -1244,6 +1248,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &310448083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310448075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0915707ff3a641a478d8f86ee961cbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &348670675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,6 +1971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &477851029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +1984,7 @@ GameObject:
   - component: {fileID: 477851032}
   - component: {fileID: 477851031}
   - component: {fileID: 477851033}
+  - component: {fileID: 477851034}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Untagged
@@ -2146,6 +2164,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &477851034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477851029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0915707ff3a641a478d8f86ee961cbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &479358201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2231,6 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &494729532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,6 +2990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &582148843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,8 +3047,8 @@ MonoBehaviour:
   - 3
   - 4
   - 5
-  minSpawnTime: 3
-  maxSpawnTime: 6
+  minSpawnTime: 2
+  maxSpawnTime: 12
   instancePool: {fileID: 1326128244}
   defaultObject: {fileID: 7898305059274075297, guid: 51d2a38d272fb3d4688d230b358d2be5, type: 3}
 --- !u!1 &614716351
@@ -3135,6 +3167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &667552950
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,6 +3933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &801652552
 GameObject:
   m_ObjectHideFlags: 0
@@ -4119,6 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &847459844
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,8 +5502,8 @@ MonoBehaviour:
   - 3
   - 4
   - 5
-  minSpawnTime: 3
-  maxSpawnTime: 6
+  minSpawnTime: 2
+  maxSpawnTime: 12
   instancePool: {fileID: 1326128244}
   defaultObject: {fileID: 7898305059274075297, guid: 51d2a38d272fb3d4688d230b358d2be5, type: 3}
 --- !u!1 &1151938944
@@ -5972,6 +6007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &1220919984
 GameObject:
   m_ObjectHideFlags: 0
@@ -6447,6 +6483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &1296217405
 GameObject:
   m_ObjectHideFlags: 0
@@ -6811,6 +6848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &1355960939
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,8 +8281,8 @@ MonoBehaviour:
   - 3
   - 4
   - 5
-  minSpawnTime: 3
-  maxSpawnTime: 6
+  minSpawnTime: 2
+  maxSpawnTime: 12
   instancePool: {fileID: 1326128244}
   defaultObject: {fileID: 7898305059274075297, guid: 51d2a38d272fb3d4688d230b358d2be5, type: 3}
 --- !u!1 &1611577277
@@ -8536,6 +8574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &1673869533
 GameObject:
   m_ObjectHideFlags: 0
@@ -9151,6 +9190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &1730070663
 GameObject:
   m_ObjectHideFlags: 0
@@ -10098,28 +10138,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liveHeartTexture: {fileID: 2800000, guid: ed03b4fbb796e7e43b8b763bb44f22fb, type: 3}
   deadHeartTexture: {fileID: 2800000, guid: bbe78f8cffb63bf4bb714dad4df7075b, type: 3}
-  catGun: {fileID: 21300000, guid: 3eb4510a2b6eba04e9ddc382b6b8b5b2, type: 3}
-  toothBrushSprite: {fileID: 21300000, guid: 6156799a0b0f935498004ea83a9cd910, type: 3}
-  laser: {fileID: 4939575272932556951, guid: 4a50dc2df5a3cae4197e8928bf87bf96, type: 3}
-  penguinProjectile: {fileID: 573460994575198959, guid: 7ba60c914e1b04c4eb2eeb35aa3da934, type: 3}
-  chihuawaProjectile: {fileID: 8550534937486416125, guid: 67afa242003e6a040b3a810ce2bf78eb, type: 3}
-  canPlayerCollectwidget: {fileID: 0}
   defaultIcon: {fileID: 2800000, guid: eea750de2f0b8364f82ab247dd65bffe, type: 3}
-  explosionForce: 150
-  explosionRadius: 15
+  explosionForce: 1500
+  explosionRadius: 25
   throwForce: 120
   laserForce: 35
   meeleForce: 1200
   meeleRange: 9
   speed: 0.6
   jumpForce: 60
-  explosionSound: {fileID: 8300000, guid: 5c369f49efc62604c81e7092801f07ba, type: 3}
-  penguinSound: {fileID: 8300000, guid: e63ab96ff1a2bf748a5adabf2783fe38, type: 3}
-  dogSound: {fileID: 8300000, guid: 3f88cd755846a9a479476f5c331db552, type: 3}
-  laserSound: {fileID: 8300000, guid: 13d3b238747b5bb43a850bacf31bbd54, type: 3}
-  pillowSound: {fileID: 8300000, guid: aaa1d7e4d4a01944fb47ee5fc77a374a, type: 3}
-  playerHitSound: {fileID: 8300000, guid: cd3f9e4ad91258446a4a2087a365b36e, type: 3}
-  playermeeleSound: {fileID: 8300000, guid: 50274af9fbc95194ab65e30535f06424, type: 3}
   animationSpeed: 0.2
   respawnTime: 3
   spawnPoints:
@@ -10131,6 +10158,9 @@ MonoBehaviour:
   playerInventories:
   - {fileID: 1841800352}
   - {fileID: 1514351262}
+  playerSpawnPoints:
+  - {fileID: 1042241805}
+  - {fileID: 614716351}
   respawnTimers:
   - {fileID: 1680200946}
   - {fileID: 1463093697}
@@ -10171,7 +10201,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablesPool: {fileID: 1687316830}
   activeItemsPool: {fileID: 1481072745}
+  projectilesPool: {fileID: 975882253}
   baseItem: {fileID: 8842172913963990892, guid: 83e27a3b4d5fd1a44a388102f63d9b50, type: 3}
+  baseProjectile: {fileID: 4933008081577215334, guid: 2396151bb103eed47bf9ddb39fb64be5, type: 3}
+  penguinProjectile: {fileID: 21300000, guid: 5f6fbd9ea964f1d41b491966738b600b, type: 3}
+  chihuawaProjectile: {fileID: 21300000, guid: 5363745ba2876464a8486869301dcd12, type: 3}
   icons:
   - {fileID: 2800000, guid: efd16b1d475d253479c93b3b2e2b2f1c, type: 3}
   - {fileID: 2800000, guid: d7c81fa2d939a714fb735d649f338bb0, type: 3}
@@ -10184,6 +10218,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e77ffc5632f405b4baca2d3be71075f4, type: 3}
   - {fileID: 21300000, guid: c9060b9404ea6ec4ab98d0e38ce67233, type: 3}
   - {fileID: 21300000, guid: f8e50ef0edc7cb14faae66d32da3c43f, type: 3}
+  explosionSound: {fileID: 8300000, guid: 5c369f49efc62604c81e7092801f07ba, type: 3}
+  penguinSound: {fileID: 8300000, guid: e63ab96ff1a2bf748a5adabf2783fe38, type: 3}
+  dogSound: {fileID: 8300000, guid: 3f88cd755846a9a479476f5c331db552, type: 3}
+  laserSound: {fileID: 8300000, guid: 13d3b238747b5bb43a850bacf31bbd54, type: 3}
+  pillowSound: {fileID: 8300000, guid: aaa1d7e4d4a01944fb47ee5fc77a374a, type: 3}
+  playerHitSound: {fileID: 8300000, guid: cd3f9e4ad91258446a4a2087a365b36e, type: 3}
+  playermeeleSound: {fileID: 8300000, guid: 50274af9fbc95194ab65e30535f06424, type: 3}
 --- !u!1 &1919662466
 GameObject:
   m_ObjectHideFlags: 0
@@ -10240,8 +10281,8 @@ MonoBehaviour:
   - 3
   - 4
   - 5
-  minSpawnTime: 3
-  maxSpawnTime: 6
+  minSpawnTime: 2
+  maxSpawnTime: 12
   instancePool: {fileID: 1326128244}
   defaultObject: {fileID: 7898305059274075297, guid: 51d2a38d272fb3d4688d230b358d2be5, type: 3}
 --- !u!1 &1943354077
@@ -10329,6 +10370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1 &2082466731
 GameObject:
   m_ObjectHideFlags: 0
@@ -10851,6 +10893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420e5dfef7316f741913504353a16166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemHeld: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
