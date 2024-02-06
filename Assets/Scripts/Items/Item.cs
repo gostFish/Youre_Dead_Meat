@@ -9,7 +9,8 @@ public class Item : MonoBehaviour
     public int itemType;
 
     private Transform floatingIcon;
-    private Transform itemPool;
+    [SerializeField] private Transform usedItemPool;
+    [SerializeField] private Transform activeItemPool;
     private SpriteRenderer img;
 
     //[SerializeField] private GameObject widget;
@@ -37,9 +38,10 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void SetItemPool(Transform newPool)
+    public void SetItemPool(Transform newUsedItemPool, Transform newActivePool)
     {
-        itemPool = newPool;
+        usedItemPool = newUsedItemPool;
+        activeItemPool = newActivePool;
     }
 
     public void SetItemIcon(Sprite newSprite)
@@ -47,9 +49,14 @@ public class Item : MonoBehaviour
         img.sprite = newSprite;
     }
 
-    public void ItemFinished()
+    public void ItemCollected()
     {
-        transform.parent = itemPool.transform;
+        transform.parent = activeItemPool.transform;
+        gameObject.SetActive(false);
+    }
+    public void ItemUseFinished()
+    {
+        transform.parent = usedItemPool.transform;
         gameObject.SetActive(false);
     }
 
@@ -58,7 +65,7 @@ public class Item : MonoBehaviour
         
         if (collision.gameObject.layer == 9)
         {
-            ItemFinished();
+            ItemUseFinished();
         }        
     }
 

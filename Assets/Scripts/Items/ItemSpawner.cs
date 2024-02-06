@@ -51,6 +51,7 @@ public class ItemSpawner : MonoBehaviour
             else
             {
                 newItemObj = collectablesPool.GetChild(0).gameObject;
+                newItemObj.SetActive(true);
             }
             newItemObj.transform.parent = transform;
             newItemObj.transform.position = transform.position;
@@ -58,7 +59,7 @@ public class ItemSpawner : MonoBehaviour
             Item newItem = newItemObj.transform.GetComponent<Item>();
             newItem.icon = cmn.icons[randomNumber];
             newItem.itemType = randomNumber + 1;
-            newItem.SetItemPool(cmn.collectablesPool.transform);
+            newItem.SetItemPool(cmn.collectablesPool.transform,cmn.activeItemsPool.transform);
             newItem.SetItemIcon(cmn.iconSprites[randomNumber]);
 
         }

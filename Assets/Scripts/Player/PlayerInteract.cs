@@ -56,10 +56,10 @@ public class PlayerInteract : MonoBehaviour
 
         //Assign all opponents
         int tempIndex = 0;
-        opponentPlayers = new GameObject[pCmn.playerPool.transform.childCount - 1];
+        opponentPlayers = new GameObject[pCmn.playerPool.transform.childCount];
         for (int i = 0; i < pCmn.playerPool.transform.childCount;i++)
         {
-            if(pCmn.playerPool.transform.GetChild(i) != transform.parent)
+            if(pCmn.playerPool.transform.GetChild(i) != transform.parent.gameObject)
             {
                 opponentPlayers[tempIndex] = pCmn.playerPool.transform.GetChild(i).gameObject;
                 tempIndex++;
@@ -90,8 +90,7 @@ public class PlayerInteract : MonoBehaviour
                 pManager.PlayerWins();
             }
 
-            inventory[invIndex].SetNewItem(nearbyItem.GetComponent<Item>());
-            nearbyItem.GetComponent<Item>().ItemFinished();
+            inventory[invIndex].SetNewItem(nearbyItem);            
 
             StartCoroutine(CollectCooldown());
         }
@@ -134,8 +133,8 @@ public class PlayerInteract : MonoBehaviour
                     Debug.Log("Item unnacounted for");
                     break;
             }
-            if(invIndex >= 0 && invIndex < inventory.Length)
-            {
+            if(invIndex >= 0 && invIndex <= inventory.Length)
+            {                
                 inventory[invIndex].ResetSpace();
                 invIndex--;
             }

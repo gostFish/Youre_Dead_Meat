@@ -24,17 +24,23 @@ public class PlayerManager : MonoBehaviour
     private RawImage[] livesUI;
     private int remainingLives;
 
-   
-    
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         GameController = GameObject.FindGameObjectWithTag("GameController");
         cmn = GameController.GetComponent<PlayerCommon>();
         flags = transform.GetComponent<PlayerFlags>();
 
-        playerWinScreen = cmn.playerWinScreens[playerNumber];
+        
+        if(playerNumber == 0) //Temporary until more players are introduced
+        {
+            playerWinScreen = cmn.playerWinScreens[1];   
+        }
+        else
+        {
+            playerWinScreen = cmn.playerWinScreens[0];
+        }
+
         respawnTimerUI = cmn.respawnTimers[playerNumber];
         respawnTimerText = respawnTimerUI.GetComponent<TextMeshProUGUI>();
 
@@ -43,8 +49,12 @@ public class PlayerManager : MonoBehaviour
         remainingLives = livesUI.Length;
         animationIndex = 0;
 
-        InitialiseUI();        
+        respawnPoint = cmn.playerSpawnPoints[playerNumber].transform.position;
+
+        InitialiseUI();
     }
+
+    
 
     private void InitialiseUI()
     {
@@ -81,13 +91,16 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerKilled()
     {
-        StartCoroutine(DeathTimer());
-        remainingLives--;
-        livesUI[remainingLives].texture = cmn.deadHeartTexture;
-        if (remainingLives == 0)
+        if(respawnTime > 0)
         {
-            PlayerWins();
+            remainingLives--;
+            livesUI[remainingLives].texture = cmn.deadHeartTexture;
+            if (remainingLives == 0)
+            {
+                PlayerWins();
+            }
         }
+        StartCoroutine(DeathTimer());
     }
 
     public void PlayerWins()

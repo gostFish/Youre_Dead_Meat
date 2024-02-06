@@ -50,44 +50,17 @@ public class PlayerAbilities : MonoBehaviour
 
     public void ShootPenguin()
     {
-
-        flags.canUseItem = false;
-        audioSrc.PlayOneShot(iCmn.penguinSound);
-        
-
-        GameObject throwable;
-        if(projectilesPool.childCount < 1)
-        {
-            throwable = Instantiate(iCmn.baseProjectile);
-        }
-        else
-        {
-            throwable = projectilesPool.GetChild(0).gameObject;
-        }
-        throwable.transform.parent = activeItemsPool;
+        GameObject throwable = Throw(1);        
         throwable.GetComponent<SpriteRenderer>().sprite = iCmn.penguinProjectile;
-        throwable.SetActive(true);
 
         if (throwable.transform.GetComponent<Rigidbody2D>() == null) { return; }
 
-        if (flags.facingRight)
-        {
-            throwable.transform.position = tran.position + new Vector3(0.5f, 0, 0);
-            throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(pCmn.throwForce, 0f), ForceMode2D.Impulse);
-        }
-        else
-        {
-            throwable.transform.position = tran.position + new Vector3(-3.5f, 0, 0);
-            throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(-pCmn.throwForce, 0f), ForceMode2D.Impulse);
-        }
-
-        StartCoroutine(RemoveProjectile(throwable));        
-        flags.canUseItem = true;
+        audioSrc.PlayOneShot(iCmn.penguinSound);
+        StartCoroutine(RemoveProjectile(throwable));
     }
 
-    public IEnumerator DoggieGrenade()
+    public GameObject Throw(float throwModifier)
     {
-        flags.canUseItem = false;
         GameObject throwable;
         if (projectilesPool.childCount < 1)
         {
@@ -97,9 +70,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             throwable = projectilesPool.GetChild(0).gameObject;
         }
-        Debug.Log("Item thrown");
         throwable.transform.parent = activeItemsPool;
-        throwable.GetComponent<SpriteRenderer>().sprite = iCmn.chihuawaProjectile;
         throwable.SetActive(true);
 
         if (throwable.transform.GetComponent<Rigidbody2D>() != null)
@@ -107,88 +78,88 @@ public class PlayerAbilities : MonoBehaviour
             if (flags.facingRight)
             {
                 throwable.transform.position = tran.position + new Vector3(0.5f, 0, 0);
-                throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(pCmn.throwForce / 3.5f, 50f), ForceMode2D.Impulse);
+                throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(pCmn.throwForce * throwModifier, 50f), ForceMode2D.Impulse);
             }
             else
             {
                 throwable.transform.position = tran.position + new Vector3(-3.5f, 0, 0);
-                throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(-pCmn.throwForce / 3.5f, 50f), ForceMode2D.Impulse);
+                throwable.GetComponent<Rigidbody2D>().AddForce(new Vector2(-pCmn.throwForce * throwModifier, 50f), ForceMode2D.Impulse);
             }
-            audioSrc.PlayOneShot(iCmn.dogSound);
-            flags.canUseItem = true;
+        }
+        else
+        { return null; }
+        return throwable;
+    }
 
-            yield return new WaitForSeconds(1f);
-            Debug.Log("Timer Passed with force: " + pCmn.explosionForce + " and explosion radius: " + pCmn.explosionRadius);
-            Collider2D[] objects = Physics2D.OverlapCircleAll(throwable.transform.position, pCmn.explosionRadius, 8);
+    public IEnumerator DoggieGrenade()
+    {
+        GameObject throwable = Throw(0.3f);
+        if(throwable == null) {
+            Debug.Log("Doggie Grenade has a null rigidody");
+            yield return null; 
+        }
+        
+        throwable.GetComponent<SpriteRenderer>().sprite = iCmn.chihuawaProjectile;
+        audioSrc.PlayOneShot(iCmn.dogSound);
+        yield return new WaitForSeconds(1f);
+        throwable.transform.parent = projectilesPool;
+        throwable.SetActive(false);
+        //StartCoroutine(RemoveProjectile(throwable));
+
+        //Explosion part
+
+        Debug.Log("Timer Passed with force: " + pCmn.explosionForce + " and explosion radius: " + pCmn.explosionRadius);
+            Collider2D[] objects = Physics2D.OverlapCircleAll(throwable.transform.position, pCmn.explosionRadius);
             Debug.Log("objects has found " + objects.Length + " objects");
+            
             foreach (Collider2D obj in objects)
             {
-                Vector2 dir = obj.transform.position - throwable.transform.position;
-                obj.GetComponent<Rigidbody2D>().AddForce(dir * pCmn.explosionForce);
-                Debug.Log("Should have applied force to " + obj.ToString() + " with force (" + dir + " * " + pCmn.explosionForce + ") ");
-            }
-            Collider2D[] players = Physics2D.OverlapCircleAll(throwable.transform.position, pCmn.explosionRadius, 7);
-            Debug.Log("Players has found " + players.Length + " objects");
-            foreach (Collider2D obj in players)
-            {
-                Vector2 dir = obj.gameObject.transform.position - throwable.transform.position;
-                Debug.Log("Should have applied force to " + obj.gameObject.ToString() + " with force (" + dir + " * " + pCmn.explosionForce + ") ");
-                if (obj.gameObject.transform.parent.transform.GetComponent<Rigidbody2D>() != null)
+                if(obj.gameObject.layer == 8 || obj.gameObject.layer == 7)
                 {
-                    Debug.Log("Explosion happening");
-                    obj.gameObject.transform.parent.transform.GetComponent<Rigidbody2D>().AddForce(dir * pCmn.explosionForce);
+                    if(obj.transform.position.x - throwable.transform.position.x > 0)
+                    {
+                        obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(pCmn.explosionForce, pCmn.explosionForce));
+                    }
+                    else
+                    {
+                    obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(-pCmn.explosionForce, pCmn.explosionForce));
+                }
+                    
+                    
+                    //Debug.Log("Should have applied force to " + obj.ToString() + " with force (" + dir + " * " + pCmn.explosionForce + ") ");
                 }
             }
-            audioSrc.PlayOneShot(iCmn.explosionSound);
-        }
-        //Destroy(throwable);
+            
+            audioSrc.PlayOneShot(iCmn.explosionSound);            
+        
         StartCoroutine(RemoveProjectile(throwable));
         flags.canUseItem = true;
     }
 
     public IEnumerator CatLaser()
     {
-
         flags.canMove = false; //Stop from moving
         flags.canUseItem = false;
 
         catGun.SetActive(true);
-        /*if (laserGun.transform.childCount > 0)
-        {
-            laserGun.transform.GetChild(0).gameObject.SetActive(false);
-        }
-        laserGun.SetActive(true);
-        laserGun.transform.GetComponent<Rigidbody2D>().simulated = false;
-        laserGun.transform.GetComponent<Rigidbody2D>().isKinematic = true;
-        laserGun.transform.GetComponent<SpriteRenderer>().enabled = true;
-        laserGun.transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);*/
-
-
-        //laserGun.GetComponent<SpriteRenderer>().sprite = cmn.catGun;
-        //laserGun.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        
 
         if (flags.facingRight)
         {
-            //laserGun.transform.position = laserGun.transform.position + new Vector3(-1.2f, 0.6f, 0);
             catGun.transform.GetComponent<SpriteRenderer>().flipX = false;
             catGun.transform.localPosition = new Vector3(-0.246f, 0.033f, 0);
         }
         else
         {
-            //laserGun.transform.position = laserGun.transform.position + new Vector3(-3.5f, 0.6f, 0);
-            //catGun.transform.GetComponent<SpriteRenderer>().flipX = true;
             catGun.transform.GetComponent<SpriteRenderer>().flipX = true;
             catGun.transform.localPosition = new Vector3(-0.66f, 0.033f, 0);
         }
         yield return new WaitForSeconds(0.2f);
 
         audioSrc.PlayOneShot(iCmn.laserSound);
-        RaycastHit2D[] hit;
-        //GameObject laserInst = Instantiate(cmn.laser, tran.position, Quaternion.identity);
         catLaser.SetActive(true);
-        //laserInst.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        //laserInst.SetActive(true);
 
+        RaycastHit2D[] hit;
         if (flags.facingRight)
         {
             hit = Physics2D.RaycastAll(tran.position + new Vector3(-2, 0, 0), Vector2.right, Mathf.Infinity);
@@ -217,8 +188,6 @@ public class PlayerAbilities : MonoBehaviour
             ApplyDirectionalForce(obj.transform.gameObject, pCmn.laserForce / 3);
         }
 
-        //Destroy(laserGun);
-        //Destroy(laserInst);
         catGun.SetActive(false);
         catLaser.SetActive(false);
         flags.canMove = true;
@@ -269,12 +238,12 @@ public class PlayerAbilities : MonoBehaviour
         if (flags.facingRight)
         {
             endRot = Quaternion.Euler(0, 0, 50);
-            endPos = toothBrush.transform.localPosition + new Vector3(-0.2f, 3.8f, 0);
+            endPos = toothBrush.transform.localPosition + new Vector3(-0.2f, 0.8f, 0);
         }
         else
         {
             endRot = Quaternion.Euler(0, 0, -50);
-            endPos = toothBrush.transform.localPosition + new Vector3(0.2f, 3.8f, 0);
+            endPos = toothBrush.transform.localPosition + new Vector3(0.2f, 0.8f, 0);
         }
         yield return new WaitForSeconds(0.1f);
         while (elapsedTime < animTime)
@@ -304,12 +273,12 @@ public class PlayerAbilities : MonoBehaviour
         if (flags.facingRight)
         {
             endRot = Quaternion.Euler(0, 0, -50);
-            endPos = toothBrush.transform.localPosition + new Vector3(0.2f, -3.8f, 0);
+            endPos = toothBrush.transform.localPosition + new Vector3(0.2f, -0.8f, 0);
         }
         else
         {
             endRot = Quaternion.Euler(0, 0, 50);
-            endPos = toothBrush.transform.localPosition + new Vector3(-0.2f, -3.8f, 0);
+            endPos = toothBrush.transform.localPosition + new Vector3(-0.2f, -0.8f, 0);
         }
 
         while (elapsedTime < animTime)

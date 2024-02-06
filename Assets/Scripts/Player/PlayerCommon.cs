@@ -6,23 +6,17 @@ public class PlayerCommon : MonoBehaviour
 {
    
     //Todo Define as Const/Final
-
+    [Header("HUD Textures")]
     public Texture liveHeartTexture;
     public Texture deadHeartTexture;
 
-    //public Sprite catGun;
-   // public Sprite toothBrushSprite;
-
-    //public GameObject laser;
-    
-
-
-    public GameObject canPlayerCollectwidget;
+    //public GameObject canPlayerCollectwidget;
 
     public Texture defaultIcon;
 
     // public GameObject nearbyItem;
 
+    [Header("Gameplay Paramaters")]
     public float explosionForce;
     public float explosionRadius;
     public float throwForce;
@@ -40,15 +34,17 @@ public class PlayerCommon : MonoBehaviour
     //public int maxLives;
 
 
-    //public Animator playerAnimator;
+    [Header("HUD Objects")]
     public GameObject[] spawnPoints;
     public GameObject[] playerWinScreens;
     public GameObject[] playerInventories;
+    public GameObject[] playerSpawnPoints;
     public GameObject[] respawnTimers;
     public GameObject[] lifeIcons;
     public GameObject[] controlIcons;
 
     //Instance pools
+    [Header("Instance Pools")]
     public GameObject playerPool;
     public GameObject projectilesPool;
     public GameObject tempItemsPool;

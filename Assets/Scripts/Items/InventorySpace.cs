@@ -7,7 +7,7 @@ public class InventorySpace : MonoBehaviour
 {
 
     private GameObject owningPlayer;
-    private Item itemHeld;
+    [SerializeField] private Item itemHeld;
 
     private Texture defaultTexture;
 
@@ -49,14 +49,18 @@ public class InventorySpace : MonoBehaviour
 
     public void ResetSpace()
     {
+        itemHeld.ItemUseFinished();
         img.texture = defaultTexture;
         itemHeld = null;
     }
 
-    public void SetNewItem(Item newItem)
+    public void SetNewItem(GameObject newItemObj)
     {
+        Item newItem = newItemObj.GetComponent<Item>();
+        newItem.ItemCollected();
         itemHeld = newItem;
         img.texture = newItem.icon;
+        newItemObj.SetActive(false);
     }
 
 }
